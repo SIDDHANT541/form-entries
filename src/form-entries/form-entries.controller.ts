@@ -26,15 +26,6 @@ export class FormEntriesController {
         return this.formEntriesService.create(createFormEntryDto);
     }
 
-    @Get('create-entry-test')
-    @HttpCode(HttpStatus.CREATED)
-    createTest(@Body() createFormEntryDto: CreateFormEntryDto) {
-        return {
-            message: 'Entry created successfully',
-            data: createFormEntryDto,
-        };
-    }
-
     @Get('get-all')
     findAll(@Query() queryDto: QueryFormEntryDto) {
         return this.formEntriesService.findAll(queryDto);
