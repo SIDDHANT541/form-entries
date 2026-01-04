@@ -12,7 +12,6 @@ export class CreateFormEntryDto {
 
     @IsNumber()
     @IsPositive()
-    @Type(() => Number)
     kw: number;
 
     @IsString()
