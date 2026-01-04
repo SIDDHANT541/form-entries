@@ -20,7 +20,7 @@ import { QueryFormEntryDto } from './dto/query-form-entry.dto';
 export class FormEntriesController {
     constructor(private readonly formEntriesService: FormEntriesService) { }
 
-    @Post()
+    @Post('create')
     @HttpCode(HttpStatus.CREATED)
     create(@Body() createFormEntryDto: CreateFormEntryDto) {
         return this.formEntriesService.create(createFormEntryDto);
