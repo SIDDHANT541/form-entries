@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty, IsInt } from 'class-validator';
 
 export class CreateFormEntryDto {
     @IsString()
@@ -9,8 +9,7 @@ export class CreateFormEntryDto {
     @IsNotEmpty()
     make_no: string;
 
-    @IsNumber()
-    @IsNotEmpty()
+    @IsInt()
     kw: number;
 
     @IsString()
