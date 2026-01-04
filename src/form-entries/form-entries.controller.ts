@@ -20,23 +20,23 @@ import { QueryFormEntryDto } from './dto/query-form-entry.dto';
 export class FormEntriesController {
     constructor(private readonly formEntriesService: FormEntriesService) { }
 
-    @Post('create')
+    @Post('create-entry')
     @HttpCode(HttpStatus.CREATED)
     create(@Body() createFormEntryDto: CreateFormEntryDto) {
         return this.formEntriesService.create(createFormEntryDto);
     }
 
-    @Get()
+    @Get('get-all')
     findAll(@Query() queryDto: QueryFormEntryDto) {
         return this.formEntriesService.findAll(queryDto);
     }
 
-    @Get(':id')
+    @Get('find/:id')
     findOne(@Param('id', ParseIntPipe) id: number) {
         return this.formEntriesService.findOne(id);
     }
 
-    @Patch(':id')
+    @Patch('update/:id')
     update(
         @Param('id', ParseIntPipe) id: number,
         @Body() updateFormEntryDto: UpdateFormEntryDto,
@@ -44,7 +44,7 @@ export class FormEntriesController {
         return this.formEntriesService.update(id, updateFormEntryDto);
     }
 
-    @Delete(':id')
+    @Delete('delete/:id')
     @HttpCode(HttpStatus.NO_CONTENT)
     remove(@Param('id', ParseIntPipe) id: number) {
         return this.formEntriesService.remove(id);
