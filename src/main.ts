@@ -5,9 +5,11 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable CORS
+  // Enable CORS - include all HTTP methods
   app.enableCors({
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+    origin: true, // Allow all origins in production, or specify your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
   });
 
   // Global validation pipe
@@ -23,7 +25,9 @@ async function bootstrap() {
   );
 
   const port = process.env.PORT ?? 3000;
-  await app.listen(port);
-  console.log(`Application is running on: http://localhost:${port}`);
+
+  // Listen on 0.0.0.0 for Railway compatibility
+  await app.listen(port, '0.0.0.0');
+  console.log(`Application is running on port: ${port}`);
 }
 bootstrap();
