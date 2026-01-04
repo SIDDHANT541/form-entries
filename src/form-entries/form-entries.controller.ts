@@ -21,11 +21,13 @@ export class FormEntriesController {
     constructor(private readonly formEntriesService: FormEntriesService) { }
 
     @Post('create-entry')
+    @HttpCode(HttpStatus.CREATED)
     create(@Body() createFormEntryDto: CreateFormEntryDto) {
         return this.formEntriesService.create(createFormEntryDto);
     }
 
-    @Post('create-entry-test')
+    @Get('create-entry-test')
+    @HttpCode(HttpStatus.CREATED)
     createTest(@Body() createFormEntryDto: CreateFormEntryDto) {
         return {
             message: 'Entry created successfully',
