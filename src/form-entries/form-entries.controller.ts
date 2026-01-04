@@ -21,9 +21,16 @@ export class FormEntriesController {
     constructor(private readonly formEntriesService: FormEntriesService) { }
 
     @Post('create-entry')
-    @HttpCode(HttpStatus.CREATED)
     create(@Body() createFormEntryDto: CreateFormEntryDto) {
         return this.formEntriesService.create(createFormEntryDto);
+    }
+
+    @Post('create-entry-test')
+    createTest(@Body() createFormEntryDto: CreateFormEntryDto) {
+        return {
+            message: 'Entry created successfully',
+            data: createFormEntryDto,
+        };
     }
 
     @Get('get-all')
@@ -45,7 +52,6 @@ export class FormEntriesController {
     }
 
     @Delete('delete/:id')
-    @HttpCode(HttpStatus.NO_CONTENT)
     remove(@Param('id', ParseIntPipe) id: number) {
         return this.formEntriesService.remove(id);
     }
